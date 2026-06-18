@@ -3,16 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anchor</title>
+  <title>Anchor — NFC-Verified Focus Sessions & AI Productivity Insights</title>
+  <meta name="description" content="Anchor is an NFC-verified iOS app for focus session management. Block distracting apps, prove you stayed present with a real NFC tap, and get AI-driven productivity insights.">
+  <meta name="theme-color" content="#313852">
+  <link rel="canonical" href="https://munaaldhshan.github.io/Anchor-Landing/">
+  <link rel="icon" href="visuals/logo.png" type="image/png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Anchor — NFC-Verified Focus Sessions & AI Productivity Insights">
+  <meta property="og:description" content="Tag in. Apps off. Mission on. Anchor combines NFC verification, smart app blocking, and AI insights to build real focus habits.">
+  <meta property="og:url" content="https://munaaldhshan.github.io/Anchor-Landing/">
+  <meta property="og:image" content="https://munaaldhshan.github.io/Anchor-Landing/visuals/logo.png">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Anchor — NFC-Verified Focus Sessions & AI Productivity Insights">
+  <meta name="twitter:description" content="Tag in. Apps off. Mission on. Anchor combines NFC verification, smart app blocking, and AI insights to build real focus habits.">
+  <meta name="twitter:image" content="https://munaaldhshan.github.io/Anchor-Landing/visuals/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     :root {
@@ -33,6 +47,15 @@
       --amber: #F5A623;
       --danger: #FF5A5A;
       --success: #22c55e;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 24px;
+      --space-6: 32px;
+      --space-7: 48px;
+      --space-8: 64px;
     }
 
     body {
@@ -52,7 +75,6 @@
       cursor: pointer;
       border: none;
       font-family: inherit;
-      transition: all 0.2s ease;
     }
 
     ::-webkit-scrollbar {
@@ -82,12 +104,6 @@
       font-family: 'Sora', sans-serif;
     }
 
-    .text-xxl {
-      font-size: 24px;
-      font-weight: 600;
-      font-family: 'Sora', sans-serif;
-    }
-
     .text-xl {
       font-size: 20px;
       font-weight: 600;
@@ -102,7 +118,6 @@
       border-radius: 16px;
       border: 1px solid var(--border);
       padding: 20px;
-      transition: all 0.3s ease;
     }
 
     .card:hover {
@@ -110,18 +125,11 @@
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    .card.dark {
-      background: var(--dark-card);
-      border-color: var(--dark-border);
-      color: var(--white);
-    }
-
     .btn {
       padding: 12px 20px;
       border-radius: 12px;
       font-size: 15px;
       font-weight: 600;
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
@@ -134,16 +142,6 @@
 
     .btn-primary:hover {
       opacity: 0.9;
-      transform: translateY(-2px);
-    }
-
-    .btn-secondary {
-      background: var(--lime);
-      color: var(--ink);
-    }
-
-    .btn-secondary:hover {
-      opacity: 0.9;
     }
 
     .btn-outline {
@@ -155,6 +153,12 @@
     .btn-outline:hover {
       border-color: var(--ink);
       background: var(--bg);
+    }
+
+    .btn:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 2px;
     }
 
     .container {
@@ -184,34 +188,6 @@
         font-size: 30px;
       }
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.6;
-      }
-    }
-
-    .animate-in {
-      animation: fadeIn 0.6s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
 
     nav {
       position: sticky;
@@ -247,7 +223,6 @@
     .nav-links a {
       font-size: 13px;
       font-weight: 500;
-      transition: color 0.2s;
     }
 
     .nav-links a:hover {
@@ -261,18 +236,18 @@
     }
 
     .hero {
-      padding: 96px 16px;
+      padding: var(--space-8) var(--space-4);
       text-align: center;
     }
 
     .hero h1 {
-      margin-bottom: 16px;
+      margin-bottom: var(--space-4);
     }
 
     .hero p {
       font-size: 20px;
       color: var(--muted);
-      margin-bottom: 24px;
+      margin-bottom: var(--space-5);
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
@@ -280,22 +255,23 @@
 
     .hero-buttons {
       display: flex;
-      gap: 16px;
+      gap: var(--space-4);
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: calc(-1 * var(--space-4));
     }
 
     .feature-card {
-      padding: 24px;
+      padding: var(--space-5);
     }
 
     .feature-icon {
       font-size: 40px;
-      margin-bottom: 16px;
+      margin-bottom: var(--space-4);
     }
 
     .feature-card h3 {
-      margin-bottom: 12px;
+      margin-bottom: var(--space-3);
       font-size: 20px;
     }
 
@@ -305,66 +281,11 @@
       line-height: 1.6;
     }
 
-    .demo-container {
-      background: var(--dark-card);
-      border-radius: 16px;
-      padding: 24px;
-      margin: 32px 0;
-      color: var(--white);
-    }
-
-    .demo-screen {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .demo-mockup {
-      background: var(--dark-card-alt);
-      border-radius: 20px;
-      aspect-ratio: 9 / 16;
-      max-width: 300px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 2px solid var(--dark-border);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    }
-
-    .demo-mockup-header {
-      background: var(--lime);
-      color: var(--ink);
-      padding: 16px;
-      font-weight: 600;
-      font-size: 13px;
-    }
-
-    .demo-mockup-content {
-      flex: 1;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 16px;
-    }
-
-    .demo-controls {
-      display: flex;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .demo-controls button {
-      flex: 1;
-    }
-
     .signup-section {
       background: var(--card);
       border-radius: 16px;
-      padding: 32px;
-      margin: 32px 0;
+      padding: var(--space-6);
+      margin: var(--space-5) 0;
       border: 2px solid var(--border);
     }
 
@@ -392,12 +313,11 @@
       border-radius: 12px;
       font-family: inherit;
       font-size: 15px;
-      transition: all 0.2s ease;
     }
 
     input:focus, textarea:focus {
       outline: none;
-      border-color: var(--);
+      border-color: var(--ink);
       box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
     }
 
@@ -436,36 +356,28 @@
     }
 
     section {
-      padding: 64px 16px;
+      padding: var(--space-7) var(--space-4);
     }
 
     footer {
       background: var(--ink);
       color: var(--white);
-      padding: 32px 16px;
+      padding: var(--space-6) var(--space-4);
       text-align: center;
-      margin-top: 64px;
-    }
-
-    .coming-soon {
-      display: inline-block;
-      background: var(--amber);
-      color: var(--ink);
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-left: 8px;
+      margin-top: var(--space-7);
     }
 
     footer a {
       color: rgba(255, 255, 255, 0.6);
-      transition: color 0.2s;
     }
 
     footer a:hover {
       color: white;
+    }
+
+    footer a:focus-visible {
+      outline: 2px solid var(--white);
+      outline-offset: 2px;
     }
 
     footer ul {
@@ -479,19 +391,19 @@
     .footer-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 24px;
-      margin-bottom: 32px;
+      gap: var(--space-5);
+      margin-bottom: var(--space-6);
       text-align: left;
     }
 
     .footer-bottom {
       border-top: 1px solid var(--dark-border);
-      padding-top: 20px;
+      padding-top: var(--space-4);
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 16px;
+      gap: var(--space-4);
     }
 
     .footer-bottom p {
@@ -529,47 +441,20 @@
       height: 40px;
     }
 
-    .hero-showcase {
-      position: relative;
-      width: 100%;
-      max-width: 760px;
-      height: 360px;
-      margin: 8px auto 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-showcase img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 16px;
-    }
-
-    @media (max-width: 768px) {
-      .hero-showcase { height: 280px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero-showcase { height: 220px; max-width: 100%; }
-    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
 
 <nav>
   <div class="nav-container">
-    <div class="logo"><i data-lucide="anchor" class="logo-icon"></i>Anchor</div>
+    <div class="logo"><i data-lucide="anchor" class="logo-icon" aria-hidden="true"></i>Anchor</div>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
       <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#demo">Demo</a></li>
       <li><a href="#analytics">Analytics</a></li>
     </ul>
-    <button class="btn btn-primary" onclick="document.getElementById('signup-section').scrollIntoView({ behavior: 'smooth' })">
+    <button type="button" class="btn btn-primary" id="nav-cta">
       Get Started
     </button>
   </div>
@@ -577,23 +462,21 @@
 
 <section class="hero">
   <div class="container">
-    <h1 class="text-display animate-in">
-     Tag in. <br> 
-     Apps off. Mission on.<br> 
-     Growth tracked. 
+    <h1 class="text-display">
+     Tag in. <br>
+     Apps off. Mission on.<br>
+     Growth tracked.
     </h1>
-    <p class="animate-in delay-1">
-      Anchor: An NFC-Verified iOS Application for Focus Session Management and AI-Driven Productivity Insights 
+    <p>
+      Anchor: An NFC-Verified iOS Application for Focus Session Management and AI-Driven Productivity Insights
     </p>
-    <div class="hero-animation" id="anchor-showcase" role="img" aria-label="3D animated preview of the Anchor device and app">
-      <canvas id="anchor-showcase-canvas"></canvas>
-    </div>
-    <div class="hero-buttons animate-in delay-2">
-      <button class="btn btn-primary">
+
+    <div class="hero-buttons">
+      <button type="button" class="btn btn-primary" id="hero-cta-start">
         Free Start
       </button>
-      <button class="btn btn-outline">
-        Demo
+      <button type="button" class="btn btn-outline" id="hero-cta-how">
+        How It Works
       </button>
     </div>
   </div>
@@ -601,42 +484,42 @@
 
 <section id="features" style="background-color: var(--bg);">
   <div class="container">
-    <div style="text-align: center; margin-bottom: 64px;">
+    <div style="text-align: center; margin-bottom: 32px;">
       <h2 class="text-xxxl">Built for Real Productivity</h2>
-      <p class="text-muted" style="margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
+      <p class="text-muted" style="margin-top: 12px; max-width: 600px; margin-left: auto; margin-right: auto;">
         Six core features that actually change how you function.
       </p>
     </div>
     <div class="grid grid-3">
-      <div class="card feature-card animate-in">
-        <div class="feature-icon"><i data-lucide="timer"></i></div>
+      <div class="card feature-card">
+        <div class="feature-icon"><i data-lucide="timer" aria-hidden="true"></i></div>
         <h3>Timed Focus Sessions</h3>
 <p>
 Choose Countdown or Pomodoro mode to match how you work.
 </p>
       </div>
-      <div class="card feature-card animate-in" style="animation-delay: 0.1s;">
-        <div class="feature-icon"><i data-lucide="ban"></i></div>
+      <div class="card feature-card">
+        <div class="feature-icon"><i data-lucide="ban" aria-hidden="true"></i></div>
         <h3>Smart App Blocking </h3>
         <p>Distracting apps are blocked automatically while you focus.</p>
       </div>
-      <div class="card feature-card animate-in" style="animation-delay: 0.2s;">
-        <div class="feature-icon"><i data-lucide="nfc"></i></div>
+      <div class="card feature-card">
+        <div class="feature-icon"><i data-lucide="nfc" aria-hidden="true"></i></div>
         <h3>NFC Tap to Verify </h3>
         <p>Tap a real tag to prove you stayed present and end your session.</p>
       </div>
-      <div class="card feature-card animate-in" style="animation-delay: 0.3s;">
-        <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+      <div class="card feature-card">
+        <div class="feature-icon"><i data-lucide="bar-chart-3" aria-hidden="true"></i></div>
         <h3>Focus Stats & Streaks</h3>
         <p>Track your focus time, completion rate, and most productive hours.</p>
       </div>
-      <div class="card feature-card animate-in" style="animation-delay: 0.4s;">
-        <div class="feature-icon"><i data-lucide="sparkles"></i></div>
+      <div class="card feature-card">
+        <div class="feature-icon"><i data-lucide="sparkles" aria-hidden="true"></i></div>
         <h3>AI Insights</h3>
         <p>Get personalized tips based on your own habits.</p>
       </div>
-      <div class="card feature-card animate-in" style="animation-delay: 0.5s;">
-        <div class="feature-icon"><i data-lucide="check"></i></div>
+      <div class="card feature-card">
+        <div class="feature-icon"><i data-lucide="check" aria-hidden="true"></i></div>
         <h3>Secure & Private</h3>
         <p>Your data is protected with secure sign-in and server-side scoring.</p>
       </div>
@@ -650,7 +533,7 @@ Choose Countdown or Pomodoro mode to match how you work.
       How Anchor Works
     </h2>
     <div class="grid" style="max-width: 800px; margin: 0 auto;">
-      <div class="card animate-in">
+      <div class="card">
         <div style="display: flex; align-items: flex-start; gap: 16px;">
           <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">1</div>
           <div>
@@ -659,7 +542,7 @@ Choose Countdown or Pomodoro mode to match how you work.
           </div>
         </div>
       </div>
-      <div class="card animate-in" style="animation-delay: 0.1s;">
+      <div class="card">
         <div style="display: flex; align-items: flex-start; gap: 16px;">
           <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">2</div>
           <div>
@@ -668,7 +551,7 @@ Choose Countdown or Pomodoro mode to match how you work.
           </div>
         </div>
       </div>
-      <div class="card animate-in" style="animation-delay: 0.2s;">
+      <div class="card">
         <div style="display: flex; align-items: flex-start; gap: 16px;">
           <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">3</div>
           <div>
@@ -677,7 +560,7 @@ Choose Countdown or Pomodoro mode to match how you work.
           </div>
         </div>
       </div>
-      <div class="card animate-in" style="animation-delay: 0.3s;">
+      <div class="card">
         <div style="display: flex; align-items: flex-start; gap: 16px;">
           <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">4</div>
           <div>
@@ -686,7 +569,7 @@ Choose Countdown or Pomodoro mode to match how you work.
           </div>
         </div>
       </div>
-      <div class="card animate-in" style="animation-delay: 0.4s;">
+      <div class="card">
         <div style="display: flex; align-items: flex-start; gap: 16px;">
           <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">5</div>
           <div>
@@ -705,9 +588,9 @@ Choose Countdown or Pomodoro mode to match how you work.
       Your Insights, Your Way
     </h2>
     <div class="grid grid-2">
-      <div class="card animate-in">
+      <div class="card">
         <h3 class="text-xl" style="margin-bottom: 16px;">
-          <i data-lucide="bar-chart-3" class="icon-heading"></i>Weekly Analytics
+          <i data-lucide="bar-chart-3" class="icon-heading" aria-hidden="true"></i>Weekly Analytics
         </h3>
         <p style="color: var(--muted); margin-bottom: 20px; font-size: 13px;">
           Track completion rates, total focus hours, streaks, and health scores across any time period.
@@ -729,24 +612,24 @@ Choose Countdown or Pomodoro mode to match how you work.
         </div>
       </div>
 
-      <div class="card animate-in" style="animation-delay: 0.1s;">
+      <div class="card">
         <h3 class="text-xl" style="margin-bottom: 16px;">
-          <i data-lucide="sparkles" class="icon-heading"></i>AI-Powered Insights 
+          <i data-lucide="sparkles" class="icon-heading" aria-hidden="true"></i>AI-Powered Insights
         </h3>
         <p style="color: var(--muted); margin-bottom: 20px; font-size: 13px;">
           GPT 4.1 analyzes your patterns to find your optimal focus hours and predict distraction risk.
         </p>
         <div style="background: var(--dark-card); color: var(--white); padding: 16px; border-radius: 12px; margin-bottom: 16px; font-size: 13px;">
           <div style="margin-bottom: 16px;">
-            <strong><i data-lucide="trophy" class="icon-inline"></i>Best Time to Focus</strong><br>
+            <strong><i data-lucide="trophy" class="icon-inline" aria-hidden="true"></i>Best Time to Focus</strong><br>
             Tuesday 4 PM (92% success rate)
           </div>
           <div style="margin-bottom: 16px;">
-            <strong><i data-lucide="triangle-alert" class="icon-inline"></i>Distraction Risk</strong><br>
+            <strong><i data-lucide="triangle-alert" class="icon-inline" aria-hidden="true"></i>Distraction Risk</strong><br>
             High between 3-5 PM (Instagram, Discord)
           </div>
           <div>
-            <strong><i data-lucide="lightbulb" class="icon-inline"></i>Suggestion</strong><br>
+            <strong><i data-lucide="lightbulb" class="icon-inline" aria-hidden="true"></i>Suggestion</strong><br>
             Schedule deep work Tue (Wed mornings)
           </div>
         </div>
@@ -757,7 +640,7 @@ Choose Countdown or Pomodoro mode to match how you work.
 
 <section id="signup-section" style="background-color: var(--bg);">
   <div class="container">
-    <div class="signup-section animate-in">
+    <div class="signup-section">
       <h2 class="text-xxxl" style="text-align: center; margin-bottom: 16px;">
         Start Your Focus Journey
       </h2>
@@ -766,26 +649,26 @@ Choose Countdown or Pomodoro mode to match how you work.
       </p>
 
       <form class="signup-form" id="signup-form">
-        <div id="message-container"></div>
+        <div id="message-container" role="status" aria-live="polite"></div>
 
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
           <div class="form-group">
             <label for="name">Full Name</label>
-            <input id="name" name="name" type="text" placeholder="Alex Chen" required>
+            <input id="name" name="name" type="text" placeholder="Alex Chen" autocomplete="name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="you@gmail.com" required>
+            <input id="email" name="email" type="email" placeholder="you@gmail.com" autocomplete="email" required>
           </div>
         </div>
 
         <div class="form-group">
           <label for="password">Password (min 8 characters)</label>
-          <input id="password" name="password" type="password" placeholder="***************" minlength="8" required>
+          <input id="password" name="password" type="password" placeholder="***************" minlength="8" autocomplete="new-password" required>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
-          Create Free Account 
+        <button type="submit" class="btn btn-primary" id="signup-submit" style="width: 100%; justify-content: center;">
+          Create Free Account
         </button>
 
         <p style="text-align: center; margin-top: 16px; font-size: 13px; color: var(--muted);">
@@ -799,7 +682,7 @@ Choose Countdown or Pomodoro mode to match how you work.
 <footer>
   <div class="container" style="max-width: 1200px;">
     <div style="margin-bottom: 32px;">
-      <p style="font-size: 24px; font-weight: 700; margin-bottom: 16px;"><i data-lucide="anchor" class="logo-icon"></i>Anchor</p>
+      <p style="font-size: 24px; font-weight: 700; margin-bottom: 16px;"><i data-lucide="anchor" class="logo-icon" aria-hidden="true"></i>Anchor</p>
       <p style="color: var(--muted-light); margin-bottom: 20px;">
         Prove your focus. Learn your patterns. Optimize your day.
       </p>
@@ -811,7 +694,6 @@ Choose Countdown or Pomodoro mode to match how you work.
         <ul>
           <li><a href="#features">Features</a></li>
           <li><a href="#how-it-works">How it works</a></li>
-          <li><a href="#demo">Demo</a></li>
           <li><a href="#analytics">Analytics</a></li>
         </ul>
       </div>
@@ -836,19 +718,36 @@ Choose Countdown or Pomodoro mode to match how you work.
   </div>
 </footer>
 
+<script src="https://unpkg.com/lucide@latest"></script>
 <script>
+  // Nav + hero CTA wiring
+  document.getElementById('nav-cta').addEventListener('click', () => {
+    document.getElementById('signup-section').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('hero-cta-start').addEventListener('click', () => {
+    document.getElementById('signup-section').scrollIntoView({ behavior: 'smooth' });
+  });
+  document.getElementById('hero-cta-how').addEventListener('click', () => {
+    document.getElementById('how-it-works').scrollIntoView({ behavior: 'smooth' });
+  });
+
   // Signup form handler
-  document.getElementById('signup-form').addEventListener('submit', async (e) => {
+  const signupForm = document.getElementById('signup-form');
+  const signupSubmit = document.getElementById('signup-submit');
+
+  signupForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const form = e.target;
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
     const messageContainer = document.getElementById('message-container');
-    
+
     messageContainer.innerHTML = '';
-    
+    signupSubmit.disabled = true;
+    signupSubmit.textContent = 'Creating Account...';
+
     try {
       const response = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
@@ -861,158 +760,20 @@ Choose Countdown or Pomodoro mode to match how you work.
       if (!response.ok) {
         messageContainer.innerHTML = `<div class="error-message">${data.message || 'Registration failed'}</div>`;
       } else {
-        messageContainer.innerHTML = `<div class="success-message"><i data-lucide="check" class="icon-inline"></i>Account created! Check your email or open the app to log in.</div>`;
+        messageContainer.innerHTML = `<div class="success-message"><i data-lucide="check" class="icon-inline" aria-hidden="true"></i>Account created! Check your email or open the app to log in.</div>`;
         if (window.lucide) lucide.createIcons();
         form.reset();
         setTimeout(() => messageContainer.innerHTML = '', 5000);
       }
     } catch (err) {
       messageContainer.innerHTML = `<div class="error-message">Network error. Is the backend running at http://localhost:5000?</div>`;
+    } finally {
+      signupSubmit.disabled = false;
+      signupSubmit.textContent = 'Create Free Account';
     }
   });
 
   if (window.lucide) lucide.createIcons();
-</script>
-
-<script type="module">
-  // AnchorShowcase â€” 3D hero animation (vanilla Three.js, since this page has no
-  // React/TypeScript build pipeline). Mirrors the AnchorShowcase component in
-  // public/LandingPage.jsx, which implements the same composition with
-  // React Three Fiber + Framer Motion for when that file is bundled.
-  import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
-  import { RoundedBoxGeometry } from 'https://unpkg.com/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js';
-
-  const container = document.getElementById('anchor-showcase');
-  const canvas = document.getElementById('anchor-showcase-canvas');
-
-  if (container && canvas && window.WebGLRenderingContext) {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(35, container.clientWidth / container.clientHeight, 0.1, 100);
-    camera.position.set(0, 0, 8);
-
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.setSize(container.clientWidth, container.clientHeight, false);
-
-    // Lighting â€” soft key + rim + fill for a premium, Apple-keynote-style look
-    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
-    keyLight.position.set(3, 5, 6);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.set(1024, 1024);
-    keyLight.shadow.radius = 6;
-    scene.add(keyLight);
-
-    const rimLight = new THREE.DirectionalLight(0xC6F135, 0.4);
-    rimLight.position.set(-4, -2, -3);
-    scene.add(rimLight);
-
-    const fillLight = new THREE.PointLight(0xffffff, 0.5, 20);
-    fillLight.position.set(-3, 1, 4);
-    scene.add(fillLight);
-
-    // Soft contact shadow beneath the device
-    const ground = new THREE.Mesh(
-      new THREE.PlaneGeometry(20, 20),
-      new THREE.ShadowMaterial({ opacity: 0.16 })
-    );
-    ground.rotation.x = -Math.PI / 2;
-    ground.position.y = -1.7;
-    ground.receiveShadow = true;
-    scene.add(ground);
-
-    const texLoader = new THREE.TextureLoader();
-    const cubeTexture = texLoader.load('visuals/cube.png');
-    cubeTexture.colorSpace = THREE.SRGBColorSpace;
-    const mockupTexture = texLoader.load('visuals/mockup1.png');
-    mockupTexture.colorSpace = THREE.SRGBColorSpace;
-
-    // Center device â€” rounded-square card with realistic reflections
-    const cardGeometry = new RoundedBoxGeometry(2.3, 2.3, 0.16, 6, 0.22);
-    const cardMaterial = new THREE.MeshPhysicalMaterial({
-      map: cubeTexture,
-      roughness: 0.25,
-      metalness: 0.2,
-      clearcoat: 0.6,
-      clearcoatRoughness: 0.15,
-      reflectivity: 0.5,
-    });
-    const card = new THREE.Mesh(cardGeometry, cardMaterial);
-    card.castShadow = true;
-    card.receiveShadow = true;
-    scene.add(card);
-
-    // Surrounding app-screen mockups, sliding on a single horizontal track
-    function makeMockup() {
-      const geometry = new THREE.PlaneGeometry(1.7, 3.5);
-      const material = new THREE.MeshStandardMaterial({
-        map: mockupTexture,
-        roughness: 0.4,
-        metalness: 0.05,
-        transparent: true,
-      });
-      const mesh = new THREE.Mesh(geometry, material);
-      mesh.castShadow = true;
-      scene.add(mesh);
-      return { mesh, material };
-    }
-
-    const mockupA = makeMockup();
-    const mockupB = makeMockup();
-
-    const TRACK_SPAN = 7.5;
-    const FADE_ZONE = 1.3;
-
-    function updateMockup({ mesh, material }, elapsed, cycleSeconds, phase) {
-      const t = (((elapsed / cycleSeconds) + phase) % 1 + 1) % 1; // 0..1, always positive
-      const x = -TRACK_SPAN / 2 + t * TRACK_SPAN;
-      mesh.position.x = x;
-      mesh.position.z = -1.3 - Math.sin(t * Math.PI) * 0.5;
-      mesh.rotation.y = Math.sin(t * Math.PI) * 0.5;
-
-      const edge = TRACK_SPAN / 2;
-      const distanceFromEdge = edge - Math.abs(x);
-      material.opacity = THREE.MathUtils.clamp(distanceFromEdge / FADE_ZONE, 0, 1);
-    }
-
-    function resize() {
-      const { clientWidth, clientHeight } = container;
-      if (!clientWidth || !clientHeight) return;
-      camera.aspect = clientWidth / clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(clientWidth, clientHeight, false);
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    const clock = new THREE.Clock();
-
-    function frame() {
-      const elapsed = clock.getElapsedTime();
-
-      // Slow Y-axis rotation: front-on -> thin side profile -> back to front-on.
-      // A sine drive naturally eases in/out and settles at each extreme.
-      card.rotation.y = Math.sin(elapsed * 0.35) * (Math.PI / 2);
-      card.position.y = Math.sin(elapsed * 1.2) * 0.035; // subtle 1-3px float
-
-      updateMockup(mockupA, elapsed, 16, 0);
-      updateMockup(mockupB, elapsed, 16, 0.5);
-
-      renderer.render(scene, camera);
-      if (!prefersReducedMotion) requestAnimationFrame(frame);
-    }
-
-    if (prefersReducedMotion) {
-      renderer.render(scene, camera);
-    } else {
-      requestAnimationFrame(frame);
-    }
-  }
 </script>
 
 </body>
