@@ -1,0 +1,1020 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anchor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #f9feff;
+      --dark-bg: #2f2f2f;
+      --card: #C3CAD4;
+      --dark-card: #313852;
+      --dark-card-alt: #222222;
+      --ink: #313852;
+      --ink-soft: #313852;
+      --muted: #888888;
+      --muted-light: #aaaaaa;
+      --white: #ffffff;
+      --black: #313852;
+      --border: #e8e8e8;
+      --dark-border: #2a2a2a;
+      --lime: #313852;
+      --amber: #F5A623;
+      --danger: #FF5A5A;
+      --success: #22c55e;
+    }
+
+    body {
+      font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    a {
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 8px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+
+    .text-display {
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .text-xxxl {
+      font-size: 30px;
+      font-weight: 700;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .text-xxl {
+      font-size: 24px;
+      font-weight: 600;
+      font-family: 'Sora', sans-serif;
+    }
+
+    .text-xl {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .text-muted {
+      color: var(--muted);
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--muted);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .card.dark {
+      background: var(--dark-card);
+      border-color: var(--dark-border);
+      color: var(--white);
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: var(--lime);
+      color: var(--ink);
+    }
+
+    .btn-secondary:hover {
+      opacity: 0.9;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--ink);
+      border: 2px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--ink);
+      background: var(--bg);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-2 {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .text-display {
+        font-size: 30px;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.6;
+      }
+    }
+
+    .animate-in {
+      animation: fadeIn 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.5px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--lime);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .hero {
+      padding: 96px 16px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .feature-card {
+      padding: 24px;
+    }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .demo-container {
+      background: var(--dark-card);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+      color: var(--white);
+    }
+
+    .demo-screen {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .demo-mockup {
+      background: var(--dark-card-alt);
+      border-radius: 20px;
+      aspect-ratio: 9 / 16;
+      max-width: 300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid var(--dark-border);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .demo-mockup-header {
+      background: var(--lime);
+      color: var(--ink);
+      padding: 16px;
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .demo-mockup-content {
+      flex: 1;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .demo-controls {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .demo-controls button {
+      flex: 1;
+    }
+
+    .signup-section {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px;
+      margin: 32px 0;
+      border: 2px solid var(--border);
+    }
+
+    .signup-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 15px;
+      transition: all 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--);
+      box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
+    }
+
+    input::placeholder {
+      color: var(--muted-light);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .success-message {
+      background: var(--success);
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .error-message {
+      background: var(--danger);
+      color: white;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    section {
+      padding: 64px 16px;
+    }
+
+    footer {
+      background: var(--ink);
+      color: var(--white);
+      padding: 32px 16px;
+      text-align: center;
+      margin-top: 64px;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      background: var(--amber);
+      color: var(--ink);
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-left: 8px;
+    }
+
+    footer a {
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.2s;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    footer ul {
+      list-style: none;
+    }
+
+    footer li {
+      margin-bottom: 8px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-bottom: 32px;
+      text-align: left;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--dark-border);
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      color: var(--muted-light);
+      font-size: 13px;
+    }
+
+    .icon-inline {
+      width: 14px;
+      height: 14px;
+      vertical-align: -2px;
+      margin-right: 4px;
+    }
+
+    .icon-heading {
+      width: 20px;
+      height: 20px;
+      vertical-align: -4px;
+      margin-right: 6px;
+    }
+
+    .logo-icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: -3px;
+      margin-right: 2px;
+    }
+
+    .feature-icon {
+      color: var(--ink);
+    }
+
+    .feature-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+
+    .hero-showcase {
+      position: relative;
+      width: 100%;
+      max-width: 760px;
+      height: 360px;
+      margin: 8px auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-showcase img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      border-radius: 16px;
+    }
+
+    @media (max-width: 768px) {
+      .hero-showcase { height: 280px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-showcase { height: 220px; max-width: 100%; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-container">
+    <div class="logo"><i data-lucide="anchor" class="logo-icon"></i>Anchor</div>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#analytics">Analytics</a></li>
+    </ul>
+    <button class="btn btn-primary" onclick="document.getElementById('signup-section').scrollIntoView({ behavior: 'smooth' })">
+      Get Started
+    </button>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <h1 class="text-display animate-in">
+     Tag in. <br> 
+     Apps off. Mission on.<br> 
+     Growth tracked. 
+    </h1>
+    <p class="animate-in delay-1">
+      Anchor: An NFC-Verified iOS Application for Focus Session Management and AI-Driven Productivity Insights 
+    </p>
+    <div class="hero-animation" id="anchor-showcase" role="img" aria-label="3D animated preview of the Anchor device and app">
+      <canvas id="anchor-showcase-canvas"></canvas>
+    </div>
+    <div class="hero-buttons animate-in delay-2">
+      <button class="btn btn-primary">
+        Free Start
+      </button>
+      <button class="btn btn-outline">
+        Demo
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="features" style="background-color: var(--bg);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 64px;">
+      <h2 class="text-xxxl">Built for Real Productivity</h2>
+      <p class="text-muted" style="margin-top: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
+        Six core features that actually change how you function.
+      </p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card feature-card animate-in">
+        <div class="feature-icon"><i data-lucide="timer"></i></div>
+        <h3>Timed Focus Sessions</h3>
+<p>
+Choose Countdown or Pomodoro mode to match how you work.
+</p>
+      </div>
+      <div class="card feature-card animate-in" style="animation-delay: 0.1s;">
+        <div class="feature-icon"><i data-lucide="ban"></i></div>
+        <h3>Smart App Blocking </h3>
+        <p>Distracting apps are blocked automatically while you focus.</p>
+      </div>
+      <div class="card feature-card animate-in" style="animation-delay: 0.2s;">
+        <div class="feature-icon"><i data-lucide="nfc"></i></div>
+        <h3>NFC Tap to Verify </h3>
+        <p>Tap a real tag to prove you stayed present and end your session.</p>
+      </div>
+      <div class="card feature-card animate-in" style="animation-delay: 0.3s;">
+        <div class="feature-icon"><i data-lucide="bar-chart-3"></i></div>
+        <h3>Focus Stats & Streaks</h3>
+        <p>Track your focus time, completion rate, and most productive hours.</p>
+      </div>
+      <div class="card feature-card animate-in" style="animation-delay: 0.4s;">
+        <div class="feature-icon"><i data-lucide="sparkles"></i></div>
+        <h3>AI Insights</h3>
+        <p>Get personalized tips based on your own habits.</p>
+      </div>
+      <div class="card feature-card animate-in" style="animation-delay: 0.5s;">
+        <div class="feature-icon"><i data-lucide="check"></i></div>
+        <h3>Secure & Private</h3>
+        <p>Your data is protected with secure sign-in and server-side scoring.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how-it-works" style="background-color: var(--bg);">
+  <div class="container">
+    <h2 class="text-xxxl" style="text-align: center; margin-bottom: 32px;">
+      How Anchor Works
+    </h2>
+    <div class="grid" style="max-width: 800px; margin: 0 auto;">
+      <div class="card animate-in">
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">1</div>
+          <div>
+            <h3 style="font-size: 17px; margin-bottom: 8px;">Create a Session</h3>
+            <p style="color: var(--muted); font-size: 13px;">Choose your focus type (Study, Work, Custom), timer mode, and duration. Set the apps you want blocked.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card animate-in" style="animation-delay: 0.1s;">
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">2</div>
+          <div>
+            <h3 style="font-size: 17px; margin-bottom: 8px;">Go Deep</h3>
+            <p style="color: var(--muted); font-size: 13px;">Start your timer. The app blocks your selected distractions and tracks every distraction attempt.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card animate-in" style="animation-delay: 0.2s;">
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">3</div>
+          <div>
+            <h3 style="font-size: 17px; margin-bottom: 8px;">Verify with NFC</h3>
+            <p style="color: var(--muted); font-size: 13px;">When done, scan your NFC tag to prove you were really there. No cheating.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card animate-in" style="animation-delay: 0.3s;">
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">4</div>
+          <div>
+            <h3 style="font-size: 17px; margin-bottom: 8px;">Get Your Score</h3>
+            <p style="color: var(--muted); font-size: 13px;">Your Focus Score (0â€“100) is calculated instantly. See how you did: duration, mode, distractions.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card animate-in" style="animation-delay: 0.4s;">
+        <div style="display: flex; align-items: flex-start; gap: 16px;">
+          <div style="width: 40px; height: 40px; border-radius: 9999px; background: var(--lime); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 17px; flex-shrink: 0;">5</div>
+          <div>
+            <h3 style="font-size: 17px; margin-bottom: 8px;">Find Patterns</h3>
+            <p style="color: var(--muted); font-size: 13px;">Over time, AI reveals when you're most productive, what distracts you, and how to optimize.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="analytics" style="background-color: var(--bg);">
+  <div class="container">
+    <h2 class="text-xxxl" style="text-align: center; margin-bottom: 32px;">
+      Your Insights, Your Way
+    </h2>
+    <div class="grid grid-2">
+      <div class="card animate-in">
+        <h3 class="text-xl" style="margin-bottom: 16px;">
+          <i data-lucide="bar-chart-3" class="icon-heading"></i>Weekly Analytics
+        </h3>
+        <p style="color: var(--muted); margin-bottom: 20px; font-size: 13px;">
+          Track completion rates, total focus hours, streaks, and health scores across any time period.
+        </p>
+        <div style="background: var(--bg); padding: 16px; border-radius: 12px; margin-bottom: 16px;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 16px; font-size: 13px; font-weight: 600;">
+            <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+          </div>
+          <div style="display: flex; gap: 4px; align-items: flex-end; height: 100px;">
+            <div style="flex: 1; background: var(--lime); border-radius: 8px; height: 60%;"></div>
+            <div style="flex: 1; background: var(--lime); border-radius: 8px; height: 75%;"></div>
+            <div style="flex: 1; background: var(--lime); border-radius: 8px; height: 45%;"></div>
+            <div style="flex: 1; background: var(--lime); border-radius: 8px; height: 90%;"></div>
+            <div style="flex: 1; background: var(--lime); border-radius: 8px; height: 80%;"></div>
+          </div>
+        </div>
+        <div style="font-size: 13px; color: var(--muted);">
+          <strong>Total:</strong> 350 minutes <strong>Avg Score:</strong> 78/100
+        </div>
+      </div>
+
+      <div class="card animate-in" style="animation-delay: 0.1s;">
+        <h3 class="text-xl" style="margin-bottom: 16px;">
+          <i data-lucide="sparkles" class="icon-heading"></i>AI-Powered Insights 
+        </h3>
+        <p style="color: var(--muted); margin-bottom: 20px; font-size: 13px;">
+          GPT 4.1 analyzes your patterns to find your optimal focus hours and predict distraction risk.
+        </p>
+        <div style="background: var(--dark-card); color: var(--white); padding: 16px; border-radius: 12px; margin-bottom: 16px; font-size: 13px;">
+          <div style="margin-bottom: 16px;">
+            <strong><i data-lucide="trophy" class="icon-inline"></i>Best Time to Focus</strong><br>
+            Tuesday 4 PM (92% success rate)
+          </div>
+          <div style="margin-bottom: 16px;">
+            <strong><i data-lucide="triangle-alert" class="icon-inline"></i>Distraction Risk</strong><br>
+            High between 3-5 PM (Instagram, Discord)
+          </div>
+          <div>
+            <strong><i data-lucide="lightbulb" class="icon-inline"></i>Suggestion</strong><br>
+            Schedule deep work Tue (Wed mornings)
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="signup-section" style="background-color: var(--bg);">
+  <div class="container">
+    <div class="signup-section animate-in">
+      <h2 class="text-xxxl" style="text-align: center; margin-bottom: 16px;">
+        Start Your Focus Journey
+      </h2>
+      <p style="text-align: center; color: var(--muted); margin-bottom: 32px; font-size: 20px;">
+        Free forever. No credit card required.
+      </p>
+
+      <form class="signup-form" id="signup-form">
+        <div id="message-container"></div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input id="name" name="name" type="text" placeholder="Alex Chen" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@gmail.com" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password (min 8 characters)</label>
+          <input id="password" name="password" type="password" placeholder="***************" minlength="8" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          Create Free Account 
+        </button>
+
+        <p style="text-align: center; margin-top: 16px; font-size: 13px; color: var(--muted);">
+          Already have an account? <a href="#login" style="color: var(--ink); font-weight: 600;">Log in</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="max-width: 1200px;">
+    <div style="margin-bottom: 32px;">
+      <p style="font-size: 24px; font-weight: 700; margin-bottom: 16px;"><i data-lucide="anchor" class="logo-icon"></i>Anchor</p>
+      <p style="color: var(--muted-light); margin-bottom: 20px;">
+        Prove your focus. Learn your patterns. Optimize your day.
+      </p>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <h4 style="margin-bottom: 16px; font-weight: 600;">Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#demo">Demo</a></li>
+          <li><a href="#analytics">Analytics</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 style="margin-bottom: 16px; font-weight: 600;">Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Anchor. All rights reserved.</p>
+      <div style="display: flex; gap: 20px;">
+        <a href="#">Instagram</a>
+        <a href="#">Facebook</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Signup form handler
+  document.getElementById('signup-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const form = e.target;
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const messageContainer = document.getElementById('message-container');
+    
+    messageContainer.innerHTML = '';
+    
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        messageContainer.innerHTML = `<div class="error-message">${data.message || 'Registration failed'}</div>`;
+      } else {
+        messageContainer.innerHTML = `<div class="success-message"><i data-lucide="check" class="icon-inline"></i>Account created! Check your email or open the app to log in.</div>`;
+        if (window.lucide) lucide.createIcons();
+        form.reset();
+        setTimeout(() => messageContainer.innerHTML = '', 5000);
+      }
+    } catch (err) {
+      messageContainer.innerHTML = `<div class="error-message">Network error. Is the backend running at http://localhost:5000?</div>`;
+    }
+  });
+
+  if (window.lucide) lucide.createIcons();
+</script>
+
+<script type="module">
+  // AnchorShowcase â€” 3D hero animation (vanilla Three.js, since this page has no
+  // React/TypeScript build pipeline). Mirrors the AnchorShowcase component in
+  // public/LandingPage.jsx, which implements the same composition with
+  // React Three Fiber + Framer Motion for when that file is bundled.
+  import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+  import { RoundedBoxGeometry } from 'https://unpkg.com/three@0.160.0/examples/jsm/geometries/RoundedBoxGeometry.js';
+
+  const container = document.getElementById('anchor-showcase');
+  const canvas = document.getElementById('anchor-showcase-canvas');
+
+  if (container && canvas && window.WebGLRenderingContext) {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(35, container.clientWidth / container.clientHeight, 0.1, 100);
+    camera.position.set(0, 0, 8);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setSize(container.clientWidth, container.clientHeight, false);
+
+    // Lighting â€” soft key + rim + fill for a premium, Apple-keynote-style look
+    scene.add(new THREE.AmbientLight(0xffffff, 0.55));
+
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.2);
+    keyLight.position.set(3, 5, 6);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.set(1024, 1024);
+    keyLight.shadow.radius = 6;
+    scene.add(keyLight);
+
+    const rimLight = new THREE.DirectionalLight(0xC6F135, 0.4);
+    rimLight.position.set(-4, -2, -3);
+    scene.add(rimLight);
+
+    const fillLight = new THREE.PointLight(0xffffff, 0.5, 20);
+    fillLight.position.set(-3, 1, 4);
+    scene.add(fillLight);
+
+    // Soft contact shadow beneath the device
+    const ground = new THREE.Mesh(
+      new THREE.PlaneGeometry(20, 20),
+      new THREE.ShadowMaterial({ opacity: 0.16 })
+    );
+    ground.rotation.x = -Math.PI / 2;
+    ground.position.y = -1.7;
+    ground.receiveShadow = true;
+    scene.add(ground);
+
+    const texLoader = new THREE.TextureLoader();
+    const cubeTexture = texLoader.load('visuals/cube.png');
+    cubeTexture.colorSpace = THREE.SRGBColorSpace;
+    const mockupTexture = texLoader.load('visuals/mockup1.png');
+    mockupTexture.colorSpace = THREE.SRGBColorSpace;
+
+    // Center device â€” rounded-square card with realistic reflections
+    const cardGeometry = new RoundedBoxGeometry(2.3, 2.3, 0.16, 6, 0.22);
+    const cardMaterial = new THREE.MeshPhysicalMaterial({
+      map: cubeTexture,
+      roughness: 0.25,
+      metalness: 0.2,
+      clearcoat: 0.6,
+      clearcoatRoughness: 0.15,
+      reflectivity: 0.5,
+    });
+    const card = new THREE.Mesh(cardGeometry, cardMaterial);
+    card.castShadow = true;
+    card.receiveShadow = true;
+    scene.add(card);
+
+    // Surrounding app-screen mockups, sliding on a single horizontal track
+    function makeMockup() {
+      const geometry = new THREE.PlaneGeometry(1.7, 3.5);
+      const material = new THREE.MeshStandardMaterial({
+        map: mockupTexture,
+        roughness: 0.4,
+        metalness: 0.05,
+        transparent: true,
+      });
+      const mesh = new THREE.Mesh(geometry, material);
+      mesh.castShadow = true;
+      scene.add(mesh);
+      return { mesh, material };
+    }
+
+    const mockupA = makeMockup();
+    const mockupB = makeMockup();
+
+    const TRACK_SPAN = 7.5;
+    const FADE_ZONE = 1.3;
+
+    function updateMockup({ mesh, material }, elapsed, cycleSeconds, phase) {
+      const t = (((elapsed / cycleSeconds) + phase) % 1 + 1) % 1; // 0..1, always positive
+      const x = -TRACK_SPAN / 2 + t * TRACK_SPAN;
+      mesh.position.x = x;
+      mesh.position.z = -1.3 - Math.sin(t * Math.PI) * 0.5;
+      mesh.rotation.y = Math.sin(t * Math.PI) * 0.5;
+
+      const edge = TRACK_SPAN / 2;
+      const distanceFromEdge = edge - Math.abs(x);
+      material.opacity = THREE.MathUtils.clamp(distanceFromEdge / FADE_ZONE, 0, 1);
+    }
+
+    function resize() {
+      const { clientWidth, clientHeight } = container;
+      if (!clientWidth || !clientHeight) return;
+      camera.aspect = clientWidth / clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(clientWidth, clientHeight, false);
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    const clock = new THREE.Clock();
+
+    function frame() {
+      const elapsed = clock.getElapsedTime();
+
+      // Slow Y-axis rotation: front-on -> thin side profile -> back to front-on.
+      // A sine drive naturally eases in/out and settles at each extreme.
+      card.rotation.y = Math.sin(elapsed * 0.35) * (Math.PI / 2);
+      card.position.y = Math.sin(elapsed * 1.2) * 0.035; // subtle 1-3px float
+
+      updateMockup(mockupA, elapsed, 16, 0);
+      updateMockup(mockupB, elapsed, 16, 0.5);
+
+      renderer.render(scene, camera);
+      if (!prefersReducedMotion) requestAnimationFrame(frame);
+    }
+
+    if (prefersReducedMotion) {
+      renderer.render(scene, camera);
+    } else {
+      requestAnimationFrame(frame);
+    }
+  }
+</script>
+
+</body>
+</html>
+
